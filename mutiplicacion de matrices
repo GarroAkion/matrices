@@ -1,0 +1,24 @@
+class matrices(object):
+    def __init__(self):
+        pass
+    def multiplicacion_matrices(self,matriz1,matriz2):
+        if isinstance(matriz1,list)and(matriz2,list)and len(matriz1[0])==len(matriz2):
+            return self.multi_aux(matriz1,matriz2,0,0,0,0,[],0,[])
+        else:
+            return "No son matrices o longitudes diferentes"
+    def multi_aux(self,matriz1,matriz2,filamat1,filamat2,columat1,columat2,resultante,resultado,resultanteF):
+        if filamat1==len(matriz1):
+            return resultante
+        elif columat2 ==len(matriz2[0]):
+            return self.multi_aux(matriz1,matriz2,filamat1+1,0,0,0,resultante+[resultanteF],0,[])
+        elif columat1 == len(matriz1[0]):
+            return self.multi_aux(matriz1,matriz2,filamat1,0,0,columat2+1,resultante,0,resultanteF+[resultado])
+        elif filamat2 == len(matriz2):
+            return self.multi_aux(matriz1,matriz2,filamat1,0,0,columat2+1,resultante,0,resultanteF+[resultado])
+        else:
+            return self.multi_aux(matriz1,matriz2,filamat1,filamat2+1,columat1+1,columat2,resultante,resultado+(matriz1[filamat1][columat1] * matriz2[filamat2][columat2]),resultanteF)
+
+matriz1=[[1,2,3],[4,5,6]]
+matriz2=[[1,2],[4,5],[6,7]]
+d=matrices()
+print(d.multiplicacion_matrices(matriz1,matriz2))
